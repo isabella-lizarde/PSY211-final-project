@@ -17,6 +17,21 @@ body {
   line-height: 1.7;
   color: #f2eee8;
   background-color: #171616;
+
+  /* Page transition */
+  animation: pageFade 0.8s ease-in-out;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 a {
@@ -34,42 +49,6 @@ ol {
 }
 
 /* =========================================
-   PAGE LOAD ANIMATIONS
-   ========================================= */
-
-header {
-  animation: fadeDown 0.7s ease-out;
-}
-
-main {
-  animation: fadeIn 2s ease-out;
-}
-
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================================
    NAVIGATION
    ========================================= */
 
@@ -79,9 +58,12 @@ nav {
   align-items: center;
   flex-wrap: wrap;
   gap: 1.5rem;
+
   padding: 1.25rem 2rem;
+
   background-color: #111010;
   border-bottom: 1px solid #393434;
+
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -91,6 +73,7 @@ nav a {
   color: #ddd6ce;
   font-size: 0.95rem;
   font-weight: 600;
+
   transition: color 0.3s ease;
 }
 
@@ -99,28 +82,38 @@ nav a:hover {
 }
 
 /* =========================================
-   HEADER / HERO
+   HEADER
    ========================================= */
 
 header {
   text-align: center;
+
   padding: 6rem 2rem;
+
   background-color: #171616;
+
   border-bottom: 1px solid #393434;
 }
 
 header h1 {
   max-width: 900px;
+
   margin: 0 auto 1rem;
+
   font-size: clamp(2.5rem, 6vw, 5rem);
+
   line-height: 1.1;
+
   letter-spacing: -0.04em;
 }
 
 header p {
   margin: 0 auto;
+
   color: #c7bfb7;
+
   font-size: 1.15rem;
+
   max-width: 700px;
 }
 
@@ -130,7 +123,9 @@ header p {
 
 main {
   width: min(1100px, 90%);
+
   margin: 0 auto;
+
   padding: 4rem 0;
 }
 
@@ -140,14 +135,75 @@ section {
 
 section h2 {
   margin-bottom: 1rem;
+
   color: #b86b6b;
+
   font-size: 2rem;
-  line-height: 1.2;
 }
 
 section p {
   color: #ddd6ce;
+
   margin-bottom: 1rem;
+}
+
+/* =========================================
+   CARDS
+   ========================================= */
+
+.card-grid,
+.trait-grid,
+.comparison-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 1.5rem;
+
+  margin-top: 2rem;
+}
+
+.card,
+.trait-card,
+.comparison-card {
+  background-color: #211f1f;
+
+  border: 1px solid #393434;
+
+  border-radius: 12px;
+
+  padding: 1.75rem;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.card:hover,
+.trait-card:hover,
+.comparison-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #8f5151;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card h3,
+.trait-card h3,
+.comparison-card h3 {
+  color: #e1a0a0;
+
+  margin-bottom: 0.75rem;
+}
+
+.card p,
+.trait-card p,
+.comparison-card p {
+  color: #c7bfb7;
+
+  margin-bottom: 0;
 }
 
 /* =========================================
@@ -156,8 +212,9 @@ section p {
 
 section ul li,
 section ol li {
-  margin-bottom: 0.75rem;
   color: #ddd6ce;
+
+  margin-bottom: 0.75rem;
 }
 
 section ul li::marker {
@@ -165,111 +222,38 @@ section ul li::marker {
 }
 
 /* =========================================
-   CARDS
-   ========================================= */
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.card {
-  background-color: #211f1f;
-  border: 1px solid #393434;
-  border-radius: 12px;
-  padding: 1.75rem;
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: #8f5151;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.card h3 {
-  color: #e1a0a0;
-  margin-bottom: 0.75rem;
-}
-
-.card p {
-  color: #c7bfb7;
-  margin-bottom: 0;
-}
-
-/* =========================================
-   TRAIT CARDS
-   ========================================= */
-
-.trait-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.trait-card {
-  padding: 1.5rem;
-  background-color: #211f1f;
-  border-left: 4px solid #8f5151;
-  border-radius: 8px;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.trait-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.trait-card h3 {
-  margin-bottom: 0.5rem;
-  color: #e1a0a0;
-}
-
-.trait-card p {
-  margin-bottom: 0;
-}
-
-/* =========================================
-   COMPARISON TABLE
+   TABLES
    ========================================= */
 
 table {
   width: 100%;
-  border-collapse: collapse;
+
   margin-top: 2rem;
+
+  border-collapse: collapse;
+
   background-color: #211f1f;
+
   border: 1px solid #393434;
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 th,
 td {
   padding: 1rem;
+
   text-align: left;
+
   border-bottom: 1px solid #393434;
 }
 
 th {
   background-color: #302b2b;
+
   color: #e1a0a0;
-  font-weight: 700;
 }
 
 td {
   color: #ddd6ce;
-}
-
-tr:last-child td {
-  border-bottom: none;
 }
 
 tr:hover td {
@@ -277,87 +261,57 @@ tr:hover td {
 }
 
 /* =========================================
-   MYTHS VS FACTS
+   MYTHS AND FACTS
    ========================================= */
 
 .myth {
-  margin-bottom: 2rem;
-  padding: 2rem;
   background-color: #211f1f;
-  border-radius: 12px;
+
   border: 1px solid #393434;
+
+  border-radius: 12px;
+
+  padding: 2rem;
+
+  margin-bottom: 2rem;
 }
 
-.myth h2 {
+.myth h3 {
   color: #d28a8a;
+
   margin-bottom: 1rem;
 }
 
 .fact {
-  padding-top: 1rem;
   border-top: 1px solid #393434;
+
+  padding-top: 1rem;
 }
 
 .fact strong {
-  color: #d7a0a0;
-}
-
-/* =========================================
-   HIGHLIGHT / CALLOUT
-   ========================================= */
-
-.callout {
-  margin: 2rem 0;
-  padding: 2rem;
-  background-color: #2a2323;
-  border-left: 5px solid #b86b6b;
-  border-radius: 8px;
-}
-
-.callout h3 {
-  margin-bottom: 0.5rem;
   color: #e1a0a0;
 }
 
-.callout p {
-  margin-bottom: 0;
-}
-
 /* =========================================
-   COMPARISON CARDS
+   CALLOUT BOXES
    ========================================= */
 
-.comparison-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
+.callout {
+  background-color: #2a2323;
 
-.comparison-card {
+  border-left: 5px solid #b86b6b;
+
+  border-radius: 8px;
+
   padding: 2rem;
-  text-align: center;
-  background-color: #211f1f;
-  border: 1px solid #393434;
-  border-radius: 12px;
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease;
+
+  margin: 2rem 0;
 }
 
-.comparison-card:hover {
-  transform: translateY(-5px);
-  border-color: #8f5151;
-}
+.callout h3 {
+  color: #e1a0a0;
 
-.comparison-card h3 {
-  margin-bottom: 1rem;
-  color: #d28a8a;
-  font-size: 1.5rem;
-}
-
-.comparison-card p {
-  margin: 0 auto;
+  margin-bottom: 0.5rem;
 }
 
 /* =========================================
@@ -366,20 +320,24 @@ tr:hover td {
 
 .button {
   display: inline-block;
+
   margin-top: 1rem;
+
   padding: 0.75rem 1.25rem;
+
   background-color: #8f5151;
-  color: #fff;
+
+  color: white;
+
   border-radius: 6px;
-  font-weight: 600;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
+
+  font-weight: bold;
+
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {
   background-color: #b86b6b;
-  transform: translateY(-2px);
 }
 
 /* =========================================
@@ -388,13 +346,12 @@ tr:hover td {
 
 .references li {
   margin-bottom: 1.5rem;
-  padding-left: 0.5rem;
 }
 
 .references a {
   color: #d28a8a;
+
   text-decoration: underline;
-  transition: color 0.3s ease;
 }
 
 .references a:hover {
@@ -407,14 +364,19 @@ tr:hover td {
 
 footer {
   padding: 2rem;
+
   text-align: center;
+
   background-color: #111010;
+
   border-top: 1px solid #393434;
 }
 
 footer p {
   margin: 0 auto;
+
   color: #958e88;
+
   font-size: 0.9rem;
 }
 
@@ -428,20 +390,11 @@ footer p {
   .comparison-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  header {
-    padding: 5rem 1.5rem;
-  }
-
-  main {
-    width: min(92%, 800px);
-  }
 }
 
 @media (max-width: 650px) {
   nav {
     gap: 0.75rem 1rem;
-    padding: 1rem;
   }
 
   nav a {
@@ -456,21 +409,8 @@ footer p {
     font-size: 2.5rem;
   }
 
-  header p {
-    font-size: 1rem;
-  }
-
   main {
     width: 92%;
-    padding: 3rem 0;
-  }
-
-  section {
-    margin-bottom: 3rem;
-  }
-
-  section h2 {
-    font-size: 1.6rem;
   }
 
   .card-grid,
@@ -478,37 +418,18 @@ footer p {
   .comparison-grid {
     grid-template-columns: 1fr;
   }
-
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  th,
-  td {
-    padding: 0.75rem;
-  }
 }
 
 /* =========================================
-   REDUCED MOTION
+   ACCESSIBILITY
    ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  header,
-  main {
+  body {
     animation: none;
   }
 
-  .card,
-  .trait-card,
-  .comparison-card,
-  .button {
-    transition: none;
+  * {
+    transition: none !important;
   }
 }
